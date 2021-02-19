@@ -6,16 +6,21 @@ import os
 import glob
 import shutil
 import os.path
+import time
 from pathlib import Path
+
+user_type = input("Insira o formato: ")
+user_source = input("Insira a origem: ")
+user_destination = input("Insira o destino: ")
 
 #---move---#
 escape_not = ('\\')
-file_type_name = 'exe'
+file_type_name = user_type
 file_type_extention = '*.'+file_type_name # Cria o modelo de extenção de arquivo
-source_directory = r'C:\Users\marco\Documents'+str(escape_not) # Origem do arquivo
-destiny_directory = r'D:\Biblioteca\Executaveis' # Destino do arquivo
+source_directory = r'C:\Users\marco'+str(escape_not)+user_source+str(escape_not) # Origem do arquivo
+destiny_directory = r'D:\Biblioteca'+str(escape_not)+user_destination # Destino do arquivo
 destiny_directory_create = destiny_directory + str(escape_not) + file_type_name # Destino para criar pasta
-
+os.system('cls')
 
 def file_organize(source_directory, destiny_directory, file_type_extention, file_type_name,destiny_directory_create):
     
@@ -30,6 +35,10 @@ def file_organize(source_directory, destiny_directory, file_type_extention, file
             file_name = file
             shutil.move(os.path.join(source_directory, file),os.path.join(destiny_directory, file))
             print(f'File: "{file_name}" in -- {source_directory} -- has be moved to ->> {destiny_directory}')
+    else:
+        os.system('cls')
+        print(f'The directory {source_directory} is empty!')
+        time.sleep(5)
 
 if __name__ == '__main__':
     file_organize(source_directory,destiny_directory,file_type_extention,file_type_name,destiny_directory_create)
